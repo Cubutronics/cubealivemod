@@ -27,7 +27,6 @@ public class ManaProvider implements ICapabilitySerializable<CompoundNBT> {
 
     @Override
     public CompoundNBT serializeNBT() {
-        assert false;
         return (CompoundNBT)MANA_CAPABILITY.getStorage()
                 .writeNBT(MANA_CAPABILITY,
                         instance

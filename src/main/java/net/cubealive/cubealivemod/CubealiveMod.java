@@ -1,8 +1,8 @@
 package net.cubealive.cubealivemod;
 
-import net.cubealive.cubealivemod.capability.girlfriend.name.IMana;
-import net.cubealive.cubealivemod.capability.girlfriend.name.Mana;
-import net.cubealive.cubealivemod.capability.girlfriend.name.ManaStorage;
+import net.cubealive.cubealivemod.capability.girlfriend.test.IMana;
+import net.cubealive.cubealivemod.capability.girlfriend.test.Mana;
+import net.cubealive.cubealivemod.capability.girlfriend.test.ManaStorage;
 import net.cubealive.cubealivemod.entity.girlfriend.RenderGirlfriendFactory;
 import net.cubealive.cubealivemod.entity.girlfriend.GirlfriendEntity;
 import net.minecraft.block.Block;
@@ -50,13 +50,14 @@ public class CubealiveMod
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         // Register ourselves for server and other game events we are interested in
-        CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana.class)
+        //CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana.class);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
+
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }

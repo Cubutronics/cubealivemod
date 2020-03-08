@@ -25,11 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 import org.lwjgl.opengl.GL11;
 
-@Mod.EventBusSubscriber(value=Dist.CLIENT)
 public class GirlfriendGUISettings extends Screen {
-
-    @ObjectHolder(CubealiveMod.MODID + ":girlfriend")
-    public static EntityType<GirlfriendEntity> GIRLFRIENDENTITY;
 
     PlayerEntity player = null;
     GirlfriendEntity girlfriend = null;
@@ -60,12 +56,6 @@ public class GirlfriendGUISettings extends Screen {
         final int halfW = this.width / 2;
         final int halfH = this.height / 2;
 
-        if(girlfriend.isSitting())  followString = "Follow me !";
-        else                        followString = "Stay here !";
-
-
-
-
         this.textFieldName = new TextFieldWidget(this.font, halfW-80, halfH-10, 95, 20, "");
         this.children.add(this.textFieldName);
 
@@ -73,7 +63,7 @@ public class GirlfriendGUISettings extends Screen {
         this.addButton(new ExtendedButton(halfW+20, halfH-10, 70, 20, I18n.format("Change name"),
                 $ -> {
                     if(!textFieldName.getText().isEmpty()){
-                        girlfriend.setCustomName(new StringTextComponent(textFieldName.getText()));
+                        //girlfriend.setCustomName(new StringTextComponent(textFieldName.getText()));
                     } else {
                         girlfriend.setCustomName(new StringTextComponent(player.getScoreboardName()+"'s Girlfriend"));
                     }

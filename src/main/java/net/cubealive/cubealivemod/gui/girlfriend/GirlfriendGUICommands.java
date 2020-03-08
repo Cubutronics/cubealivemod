@@ -17,7 +17,6 @@ import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
 import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 
-@Mod.EventBusSubscriber(value=Dist.CLIENT)
 public class GirlfriendGUICommands extends Screen {
 
     PlayerEntity player = null;
@@ -47,7 +46,7 @@ public class GirlfriendGUICommands extends Screen {
         final int halfW = this.width / 2;
         final int halfH = this.height / 2;
 
-        if(girlfriend.isSitting())  followString = "Follow me !";
+        if(girlfriend.sitStage())   followString = "Follow me !";
         else                        followString = "Stay here !";
 
 
@@ -59,7 +58,7 @@ public class GirlfriendGUICommands extends Screen {
         // "Refresh Mini Model" button rebuilds the tile's MiniModel;
         this.addButton(new ExtendedButton(halfW-80, halfH+20, 170, 20, I18n.format(followString),
                 $ -> {
-                    if(girlfriend.isSitting()){
+                    if(girlfriend.sitStage()){
                         girlfriend.sit();
                         this.player.sendMessage(new StringTextComponent("Ok ! I'll follow you :)"));
                         Minecraft.getInstance().displayGuiScreen(null);

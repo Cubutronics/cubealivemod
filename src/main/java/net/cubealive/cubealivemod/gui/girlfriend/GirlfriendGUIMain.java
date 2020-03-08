@@ -17,7 +17,6 @@ import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
 import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 
-@Mod.EventBusSubscriber(value=Dist.CLIENT)
 public class GirlfriendGUIMain extends Screen {
 
     PlayerEntity player = null;

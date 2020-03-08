@@ -140,10 +140,14 @@ public class GirlfriendEntity extends TameableEntity {
     }
 
     public void sit(){
-        if(this.isSitting()){
+        if(sitting){
             this.setSitting(false);
         } else {
             this.setSitting(true);
         }
+    }
+
+    public boolean sitStage(){
+        return sitting;
     }
 }

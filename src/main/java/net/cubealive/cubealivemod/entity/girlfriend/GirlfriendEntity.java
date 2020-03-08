@@ -2,6 +2,10 @@ package net.cubealive.cubealivemod.entity.girlfriend;
 
 import com.google.common.collect.Maps;
 import net.cubealive.cubealivemod.CubealiveMod;
+import net.cubealive.cubealivemod.capability.girlfriend.test.CapabilityHandler;
+import net.cubealive.cubealivemod.capability.girlfriend.test.IMana;
+import net.cubealive.cubealivemod.capability.girlfriend.test.Mana;
+import net.cubealive.cubealivemod.capability.girlfriend.test.ManaProvider;
 import net.cubealive.cubealivemod.client.ClientHandler;
 import net.cubealive.cubealivemod.gui.girlfriend.GirlfriendGUIMain;
 import net.minecraft.client.Minecraft;
@@ -22,9 +26,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -55,6 +62,8 @@ public class GirlfriendEntity extends TameableEntity {
     public AgeableEntity createChild(AgeableEntity ageable) {
         return null;
     }
+
+
 
     @Override
     protected void registerGoals() {
@@ -125,12 +134,19 @@ public class GirlfriendEntity extends TameableEntity {
         if(world.isRemote){
             if(hand == Hand.MAIN_HAND){
                 if(player.getHeldItemMainhand().isEmpty()){
+                    IMana mana = (IMana) this.getCapability(ManaProvider.MANA_CAPABILITY, null);
+                    float manaAmount = mana.getMana();
+                    player.sendMessage(new StringTextComponent("Mana: "+String.valueOf(manaAmount)));
                     ClientHandler.openGirlfriendGUI(player,this);
                 }
             }
         }
 
         return super.processInteract(player, hand);
+    }
+    @Override
+    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
 
